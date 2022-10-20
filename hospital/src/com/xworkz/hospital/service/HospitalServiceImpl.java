@@ -21,7 +21,7 @@ public class HospitalServiceImpl implements HospitalService {
 					System.out.println("founder name is valid");
 					if(speacialist!=null && speacialist.length()>3 && speacialist.length()<50) {
 						System.out.println("Speacialist is valid");
-						if(since>1900 && since<2023) {
+						if(since>1800 && since<2023) {
 							System.out.println("year is valid");
 							HospitalRepository hospitalRepository = new HospitalRepositoryImpl();
 							hospitalRepository.save(dto);
