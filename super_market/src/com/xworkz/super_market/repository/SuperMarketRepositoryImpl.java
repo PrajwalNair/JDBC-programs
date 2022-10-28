@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import static com.xworkz.super_market.constants.MySqlAccount.*;
 import com.xworkz.super_market.dto.SuperMarketDTO;
@@ -79,6 +80,8 @@ public class SuperMarketRepositoryImpl implements SuperMarketRepository {
 				if(executeUpdate>0) {
 					System.out.println(executeUpdate);
 				}
+				
+				
 			}
 			
 			
@@ -86,6 +89,209 @@ public class SuperMarketRepositoryImpl implements SuperMarketRepository {
 			e.printStackTrace();
 		}
 		return true;
+	}
+	
+	@Override
+	public SuperMarketDTO findByName(String name) {
+		
+		try {
+			Connection connection = DriverManager.getConnection(URL.getValues(), USERNAME.getValues(),SECRET.getValues());
+			String sql = "select * from super_market where name=?";
+			PreparedStatement prepareStatement = connection.prepareStatement(sql);
+			prepareStatement.setString(1, name);
+			ResultSet result = prepareStatement.executeQuery();
+			SuperMarketDTO dto = new SuperMarketDTO();
+			while(result.next()) {
+				int id = result.getInt(1);
+				String name1 = result.getString(2);
+				String companyName = result.getString(3);
+				String gstNo = result.getString(4);
+				int pincode = result.getInt(5);
+				String type = result.getString(6);
+				
+				
+				
+				dto.setId(id);
+				dto.setName(name1);
+				dto.setCompany(companyName);
+				dto.setGstNo(gstNo);
+				dto.setPincode(pincode);
+				dto.setType(type);
+//				System.out.println(dto);
+				
+				return dto;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
+	@Override
+	public SuperMarketDTO findById(int id) {
+		try {
+			Connection connection = DriverManager.getConnection(URL.getValues(), USERNAME.getValues(),SECRET.getValues());
+			String sql = "select * from super_market where id=?";
+			PreparedStatement prepareStatement = connection.prepareStatement(sql);
+			prepareStatement.setInt(1, id);
+			ResultSet result = prepareStatement.executeQuery();
+			while(result.next()) {
+				int id1 = result.getInt(1);
+				String name = result.getString(2);
+				String companyName = result.getString(3);
+				String gstNo = result.getString(4);
+				int pincode = result.getInt(5);
+				String type = result.getString(6);
+				
+				SuperMarketDTO dto = new SuperMarketDTO();
+				dto.setId(id1);
+				dto.setName(name);
+				dto.setCompany(companyName);
+				dto.setGstNo(gstNo);
+				dto.setPincode(pincode);
+				dto.setType(type);
+				return dto;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	@Override
+	public List<SuperMarketDTO> findAll() {
+		try {
+			List<SuperMarketDTO> dtos = new ArrayList<SuperMarketDTO>();
+			Connection connection = DriverManager.getConnection(URL.getValues(), USERNAME.getValues(),SECRET.getValues());
+			String sql = "select * from super_market";
+			PreparedStatement prepareStatement = connection.prepareStatement(sql);
+			ResultSet result = prepareStatement.executeQuery();
+			while(result.next()) {
+				int id1 = result.getInt(1);
+				String name = result.getString(2);
+				String companyName = result.getString(3);
+				String gstNo = result.getString(4);
+				int pincode = result.getInt(5);
+				String type = result.getString(6);
+				
+				SuperMarketDTO dto = new SuperMarketDTO();
+				dto.setId(id1);
+				dto.setName(name);
+				dto.setCompany(companyName);
+				dto.setGstNo(gstNo);
+				dto.setPincode(pincode);
+				dto.setType(type);
+				
+				dtos.add(dto);
+//				System.out.println(dto);
+			}
+			return dtos;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@Override
+	public List<SuperMarketDTO> findByType(String type) {
+		try {
+			List<SuperMarketDTO> dtos = new ArrayList<SuperMarketDTO>();
+			Connection connection = DriverManager.getConnection(URL.getValues(), USERNAME.getValues(),SECRET.getValues());
+			String sql = "select * from super_market where type=?";
+			PreparedStatement prepareStatement = connection.prepareStatement(sql);
+			prepareStatement.setString(1, type);
+			ResultSet result = prepareStatement.executeQuery();
+			while(result.next()) {
+				int id1 = result.getInt(1);
+				String name = result.getString(2);
+				String companyName = result.getString(3);
+				String gstNo = result.getString(4);
+				int pincode = result.getInt(5);
+				String type1 = result.getString(6);
+				
+				SuperMarketDTO dto = new SuperMarketDTO();
+				dto.setId(id1);
+				dto.setName(name);
+				dto.setCompany(companyName);
+				dto.setGstNo(gstNo);
+				dto.setPincode(pincode);
+				dto.setType(type1);
+				
+				dtos.add(dto);
+//				System.out.println(dto);
+			}
+			return dtos;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@Override
+	public List<SuperMarketDTO> findByPincodeAndType(String type, int pincode) {
+		try {
+			List<SuperMarketDTO> dtos = new ArrayList<SuperMarketDTO>();
+			Connection connection = DriverManager.getConnection(URL.getValues(), USERNAME.getValues(),SECRET.getValues());
+			String sql = "select * from super_market where type=? && pincode=?";
+			PreparedStatement prepareStatement = connection.prepareStatement(sql);
+			prepareStatement.setString(1, type);
+			prepareStatement.setInt(2, pincode);
+			ResultSet result = prepareStatement.executeQuery();
+			while(result.next()) {
+				int id1 = result.getInt(1);
+				String name = result.getString(2);
+				String companyName = result.getString(3);
+				String gstNo = result.getString(4);
+				int pincode1 = result.getInt(5);
+				String type1 = result.getString(6);
+				
+				SuperMarketDTO dto = new SuperMarketDTO();
+				dto.setId(id1);
+				dto.setName(name);
+				dto.setCompany(companyName);
+				dto.setGstNo(gstNo);
+				dto.setPincode(pincode1);
+				dto.setType(type1);
+				
+				dtos.add(dto);
+//				System.out.println(dto);
+			}
+			return dtos;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@Override
+	public int totalCount() {
+		try {
+			
+			Connection connection = DriverManager.getConnection(URL.getValues(), USERNAME.getValues(),SECRET.getValues());
+			String sql = "select Count(*) from super_market ";
+			PreparedStatement prepareStatement = connection.prepareStatement(sql);
+			ResultSet result = prepareStatement.executeQuery();
+			while (result.next()) {
+				
+				int count = result.getInt(1);
+				System.out.println(count);
+			}
+			 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

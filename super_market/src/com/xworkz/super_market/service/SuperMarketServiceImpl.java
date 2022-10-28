@@ -67,4 +67,40 @@ public class SuperMarketServiceImpl implements SuperMarketService {
 		this.repository.save(list);
 		return true;
 	}
+	
+	@Override
+	public SuperMarketDTO findByName(String name) {
+		
+		return repository.findByName(name);
+	}
+	
+	@Override
+	public SuperMarketDTO findById(int id) {
+		
+		return repository.findById(id);
+	}
+	
+	@Override
+	public List<SuperMarketDTO> findAll() {
+		
+		return this.repository.findAll();
+	}
+	
+	@Override
+	public List<SuperMarketDTO> findByType(String type) {
+		// TODO Auto-generated method stub
+		return repository.findByType(type);
+	}
+	
+	@Override
+	public List<SuperMarketDTO> findByPincodeAndType(String type, int pincode) {
+		// TODO Auto-generated method stub
+		return repository.findByPincodeAndType(type, pincode);
+	}
+	
+	@Override
+	public int totalCount() {
+		// TODO Auto-generated method stub
+		return repository.totalCount();
+	}
 }

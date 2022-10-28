@@ -12,8 +12,8 @@ public class HotelDisplay {
 		//hotelService.validateAndSave(hotelDTO);
 		HotelDTO findById = hotelService.findById(1);
 		System.out.println(findById);
-		hotelService.validateUpdateNameById("karnataka bhavan", 1);
-		hotelService.deleteById(1);
+//		hotelService.validateUpdateNameById("karnataka bhavan", 1);
+//		hotelService.deleteById(1);
 		
 	}
 

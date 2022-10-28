@@ -3,6 +3,7 @@ package com.xworkz.super_market;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collector;
 
 import com.xworkz.super_market.dto.SuperMarketDTO;
 import com.xworkz.super_market.service.SuperMarketService;
@@ -19,20 +20,30 @@ public class SuperMarketDisplay {
 		SuperMarketDTO dto6 = new SuperMarketDTO(6, "reliance", "reliance", "22AAAAA0000A1Z6", 580022, "clothing");
 		SuperMarketDTO dto7 = new SuperMarketDTO(7, "more", "D company", "22AAAAA0000A1Z7", 580023,"clothing and groceries");
 		SuperMarketDTO dto8 = new SuperMarketDTO(8, "vishal mart", "reliance", "22AAAAA0000A1Z6", 580022, "clothing");
+		SuperMarketDTO dto9 = new SuperMarketDTO(9, "reliance", "reliance", "22AAAAA0000A1Z6", 580022, "clothing");
+		SuperMarketDTO dto10 = new SuperMarketDTO(10, "more", "D company", "22AAAAA0000A1Z7", 580023,"clothing and groceries");
+		SuperMarketDTO dto11 = new SuperMarketDTO(11, "vishal mart", "reliance", "22AAAAA0000A1Z6", 580022, "clothing");
 
 		List<SuperMarketDTO> collection = new ArrayList();
+		collection.add(dto1);
+		collection.add(dto2);
+		collection.add(dto3);
+		collection.add(dto4);
 		collection.add(dto5);
 		collection.add(dto6);
 		collection.add(dto7);
 		collection.add(dto8);
+		collection.add(dto9);
+		collection.add(dto10);
+		collection.add(dto11);
 		
 		SuperMarketService service = new SuperMarketServiceImpl();
-		service.validateAndSave(dto1);
-		service.validateAndSave(dto2);
-		service.validateAndSave(dto3);
-		service.validateAndSave(dto4);
+//		service.validateAndSave(dto1);
+//		service.validateAndSave(dto2);
+//		service.validateAndSave(dto3);
+//		service.validateAndSave(dto4);
 		
-		service.displayByName("D mart");
+//		service.displayByName("D mart");
 		
 		
 //		Iterator<SuperMarketDTO> list = collection.iterator();
@@ -51,8 +62,45 @@ public class SuperMarketDisplay {
 //		}
 		
 		
-		collection.stream().forEach(ref->System.out.println(service.validateAndSave(ref)));
+//		collection.forEach(ref->System.out.println(service.validateAndSave(ref)));
 		
+		SuperMarketDTO findByName = service.findByName("reliance");
+		System.out.println(findByName);
+		
+		
+		System.out.println("======================");
+		
+		SuperMarketDTO findById = service.findById(1);
+		System.out.println(findById);
+		
+		System.out.println("======================");
+		
+		List<SuperMarketDTO> findAll = service.findAll();
+		findAll.forEach(ref->System.out.println(ref));
+		
+		System.out.println("======================");
+		
+		List<SuperMarketDTO> findByType = service.findByType("groceries");
+		findByType.forEach(ref->System.out.println(ref));
+		
+		System.out.println("======================");
+		
+		List<SuperMarketDTO> findByPincodeAndType = service.findByPincodeAndType("clothing",580022);
+		findByPincodeAndType.forEach(ref->System.out.println(ref));
+		
+		System.out.println("======================");
+		
+		service.totalCount();
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		 
 		
 		
 		
