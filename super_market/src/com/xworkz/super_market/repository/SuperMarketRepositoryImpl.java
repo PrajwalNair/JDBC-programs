@@ -180,14 +180,14 @@ public class SuperMarketRepositoryImpl implements SuperMarketRepository {
 				String gstNo = result.getString(4);
 				int pincode = result.getInt(5);
 				String type = result.getString(6);
-				
-				SuperMarketDTO dto = new SuperMarketDTO();
-				dto.setId(id1);
-				dto.setName(name);
-				dto.setCompany(companyName);
-				dto.setGstNo(gstNo);
-				dto.setPincode(pincode);
-				dto.setType(type);
+				SuperMarketDTO dto = new SuperMarketDTO(id1, name, companyName, gstNo, pincode, type);
+//				SuperMarketDTO dto = new SuperMarketDTO();
+//				dto.setId(id1);
+//				dto.setName(name);
+//				dto.setCompany(companyName);
+//				dto.setGstNo(gstNo);
+//				dto.setPincode(pincode);
+//				dto.setType(type);
 				
 				dtos.add(dto);
 //				System.out.println(dto);
